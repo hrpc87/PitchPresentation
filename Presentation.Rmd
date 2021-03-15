@@ -1,0 +1,59 @@
+---
+title: "Shiny Application and Reproducible Pitch"
+author: "Rodrigo Padilla"
+date: "3/15/2021"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## About the Assignment (1/2)
+
+Your Shiny Application
+
+1. Write a shiny application with associated supporting documentation. The documentation should be thought of as whatever a user will need to get started using your application.
+2. Deploy the application on Rstudio's shiny server
+3. Share the application link by pasting it into the provided text box
+4. Share your server.R and ui.R code on github
+
+## About the Assignment (2/2)
+
+The application must include the following:
+
+1. Some form of input (widget: textbox, radio button, checkbox, ...)
+2. Some operation on the ui input in sever.R
+3. Some reactive output displayed as a result of server calculations
+4. You must also include enough documentation so that a novice user could use your application.
+5. The documentation should be at the Shiny website itself. Do not post to an external link.
+
+## How to use the application
+
+By using the already existing dataset "Galton Families". A linear model was fit to a linear model to predict a child's height based on the gener and the parent's average height.
+
+You can find the application on: https://hrpc87.shinyapps.io/ShinyApp/
+
+## About the dataset "Galton Families"
+
+The Galton dataset on the heights of parents and their children.
+
+```{r}
+
+library(HistData)
+data(GaltonFamilies)
+summary(GaltonFamilies)
+
+```
+
+## Scatterplot
+
+In the scatterplot below are represented the data used for the prediction model
+
+```{r plot}
+library(HistData)
+data(GaltonFamilies)
+plot(jitter(GaltonFamilies$childHeight) ~ GaltonFamilies$midparentHeight,xlab="Average Height of the Parents (in inches)",ylab="Height of the Child (in inches)",main="Scatterplot of Galton Family Data",pch=19,frame.plot=FALSE,col=ifelse(GaltonFamilies$gender=="female", "red", "dark blue"))
+legend(65,80,pch=c(19,19),col=c("red","dark blue"),c("female", "male"),bty="o",cex=.8)
+```
+
